@@ -1,24 +1,28 @@
 <h1>Informasi instalasi untuk setiap kontributor :</h1>
-<b>setelah clone repositori, tolong jalankan pertintah ini pada repo yang telah di clone:</b>
-- composer install
-- cp .env.example .env
-- php artisan key:generate
-<b>setelah menjalankan perintah diatas, lakukan beberapa perubahan berikut:</b>
-- buat database dengan nama "lumpia" pada "localhost/phpmyadmin"
-- hapus tanda "#" / blok dan "ctrl+/" kode berikut yang ada di file .env "# DB_HOST=127.0.0.1 # DB_PORT=3306 # DB_DATABASE=lumpia # DB_USERNAME=root # DB_PASSWORD="
-- dan jalankan php artisan migrate
-<b>setelah semua itu, jalankan "php artisan serve" dan buka localhost:8000 pada browser. seharusnya tidak ada error jika semua langkah sebelumnya telah berhasil</b>
+<b>setelah clone repositori, tolong jalankan pertintah ini pada repo yang telah di clone:</b><br>
+- composer install<br>
+- cp .env.example .env <br>
+- php artisan key:generate <br>
+<b>setelah menjalankan perintah diatas, lakukan beberapa perubahan berikut:</b> <br>
+- buat database dengan nama "lumpia" pada "localhost/phpmyadmin" <br>
+- hapus tanda "#" / blok dan "ctrl+/" kode berikut yang ada di file .env "# DB_HOST=127.0.0.1 # DB_PORT=3306 # DB_DATABASE=lumpia # DB_USERNAME=root # DB_PASSWORD=" <br>
+- dan jalankan php artisan migrate <br>
+<b>setelah semua itu, jalankan "php artisan serve" dan buka localhost:8000 pada browser. seharusnya tidak ada error jika semua langkah sebelumnya telah berhasil</b> <br>
 
 <h1>Informasi push kode baru ke github:</h1>
-<b>pada repo ini akan ada 3 branch yaitu</b>
-- main : sebagai branch utama <b>jangan pernah push ke branch ini secara langsung dengan alasan apapun</b>
-- front : akan digunakan oleh yang ngurus tampilan/UI. <b>jika sedang mengerjakan tampilan web tolong push ke sini</b>
-- back : akan digunakan oleh yang ngurus yang berhubungan dengan database <b>jika sedang mengerjakan database tolong push ke sini</b>
-<b>setelah push perubahan pada brach masing masing, tolong buat pull request. dengan langkah langkah seperti berikut :</b>
-- setelah buka repositori pada web github.com, klik "pull request" pada navbar nya
-- setelah masuk ke menu pull request, klik "new pull request" yang ada pada kanan atas dengan background hijau
-- setelah ada pada "new pull request", pilih branch yang kalian ingin gabungkan pada bagian "compare", dan klik pull request
-- lalu pilih semua orang yang ada untuk aprrove perubahan. <b>jangan langsung aprrove perubahan sendiri, karena dapat terjadi konflik yang tidak diinginkan</b>
+<b>pada repo ini akan ada 3 branch yaitu</b><br>
+- main : sebagai branch utama <b>jangan pernah push ke branch ini secara langsung dengan alasan apapun</b> <br>
+- front : akan digunakan oleh yang ngurus tampilan/UI. <b>jika sedang mengerjakan tampilan web tolong push ke sini</b> <br>
+- back : akan digunakan oleh yang ngurus yang berhubungan dengan database <b>jika sedang mengerjakan database tolong push ke sini</b> <br>
+<b>setelah push perubahan pada brach masing masing, tolong buat pull request. dengan langkah langkah seperti berikut :</b> <br>
+- setelah buka repositori pada web github.com, klik "pull request" pada navbar nya <br>
+- setelah masuk ke menu pull request, klik "new pull request" yang ada pada kanan atas dengan background hijau <br>
+- setelah ada pada "new pull request", pilih branch yang kalian ingin gabungkan pada bagian "compare", dan klik pull request <br>
+- lalu pilih semua orang yang ada untuk aprrove perubahan. <b>jangan langsung aprrove perubahan sendiri, karena dapat terjadi konflik yang tidak diinginkan</b> <br>
+
+<h1>Informasi sebelum mulai koding<h1>
+<b>- ingat selalu untuk merubah branch ke branch yang diinginkan</b>
+<b>- selalu cek perubahan dengan menjalankan "git pull" agar kodingan yang telah dibuat tidak hilang karena tertimpa dengan kodingan yang ada di branch</b>
 
 <h1>ingat selalu untuk lapor perubahan sekecil apapun ke grup, dan jelaskan perubahan apa yang telah dibuat</h1>
 
