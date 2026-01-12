@@ -20,9 +20,9 @@
 - setelah ada pada "new pull request", pilih branch yang kalian ingin gabungkan pada bagian "compare", dan klik pull request <br>
 - lalu pilih semua orang yang ada untuk aprrove perubahan. <b>jangan langsung aprrove perubahan sendiri, karena dapat terjadi konflik yang tidak diinginkan</b> <br>
 
-<h1>Informasi sebelum mulai koding<h1>
+<h1>Informasi sebelum mulai koding!!<h1>
 <b>- ingat selalu untuk merubah branch ke branch yang diinginkan</b>
-<b>- selalu cek perubahan dengan menjalankan "git pull" agar kodingan yang telah dibuat tidak hilang karena tertimpa dengan kodingan yang ada di branch</b>
+<b>- setelah itu cek perubahan dengan menjalankan "git pull origin main" agar kodingan yang telah dibuat tidak hilang karena tertimpa dengan kodingan yang ada di branch</b>
 
 <h1>ingat selalu untuk lapor perubahan sekecil apapun ke grup, dan jelaskan perubahan apa yang telah dibuat</h1>
 
