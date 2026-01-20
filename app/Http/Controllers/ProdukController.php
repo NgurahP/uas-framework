@@ -4,15 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProdukModel as Produk;
+use App\Models\CategorieModel as Kategori;
 
 class ProdukController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('produk.index');
+        $produks = Produk::with('kategori')
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('nama_produk', 'like', '%' . $request->search . '%');
+            })
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('produk.index', compact('produks'));
     }
 
     /**
@@ -20,7 +28,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('produk.create');
+        $kategoris = Kategori::all();
+
+        return view('produk.create', compact('kategoris'));
     }
 
     /**
@@ -29,9 +39,11 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'kode_produk' => 'required|string|max:50|unique:products,kode_produk',
+            'nama_produk' => 'required|string|max:255',
             'harga' => 'required|numeric',
             'stok' => 'required|integer',
+            'id_kategori' => 'required|exists:categories,id',
         ]);
 
         Produk::create($request->all());
@@ -54,7 +66,8 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        return view('produk.edit', compact('produk'));
+        $kategori = Kategori::all();
+        return view('produk.edit', compact('produk', 'kategori'));
     }
 
     /**
@@ -63,9 +76,11 @@ class ProdukController extends Controller
     public function update(Request $request, Produk $produk)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'kode_produk' => 'required|string|max:50|unique:products,kode_produk,' . $produk->id,
+            'nama_produk' => 'required|string|max:255',
             'harga' => 'required|numeric',
             'stok' => 'required|integer',
+            'id_kategori' => 'required|exists:categories,id',
         ]);
 
         $produk->update($request->all());
@@ -78,8 +93,12 @@ class ProdukController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Produk $produk)
     {
-        //
+        $produk->delete();
+
+        return redirect()
+            ->route('produk.index')
+            ->with('success', 'Produk berhasil dihapus');
     }
 }
