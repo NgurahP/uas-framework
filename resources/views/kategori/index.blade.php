@@ -5,7 +5,7 @@
         <!-- HEADER -->
         <div class="flex justify-between items-center mb-6">
             <div>
-                <h2 class="text-xl font-semibold">Manajemen Produk</h2>
+                <h2 class="text-xl font-semibold">Manajemen Kategori</h2>
                 <p class="text-sm text-gray-500">Lumpia Beef Twins</p>
             </div>
 
@@ -19,14 +19,14 @@
         <div class="flex justify-between items-center">
 
             <!-- Tambah Produk -->
-            <a href="{{ route('produk.create') }}"
+            <a href="{{ route('kategori.create') }}"
                 class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">
-                ➕ Tambah Produk
+                ➕ Tambah Kategori
             </a>
 
             <!-- Search -->
-            <form method="GET" action="{{ route('produk.index') }}" class="relative">
-                <input type="text" name="search" placeholder="Cari nama produk..." value="{{ request('search') }}"
+            <form method="GET" action="{{ route('kategori.index') }}" class="relative">
+                <input type="text" name="search" placeholder="Cari nama kategori..." value="{{ request('search') }}"
                     class="pl-10 pr-4 py-2 border rounded-lg text-sm focus:ring focus:ring-blue-200">
                 <span class="absolute left-3 top-2.5 text-gray-400 text-sm">
                     🔍
@@ -46,35 +46,21 @@
             <table class="w-full text-sm">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-4 py-3 text-left">ID Produk</th>
-                        <th class="px-4 py-3">Nama Produk</th>
-                        <th class="px-4 py-3">Kategori</th>
-                        <th class="px-4 py-3">Harga</th>
-                        <th class="px-4 py-3">Stok</th>
-                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3 text-left">ID Kategori</th>
+                        <th class="px-4 py-3">Nama Kategori</th>
                         <th class="px-4 py-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y">
-                    @foreach ($produks as $produk)
+                    @foreach ($kategoris as $kategori)
                         <tr>
-                            <td class="px-4 py-3">{{ $produk->kode_produk}}</td>
-                            <td class="px-4 py-3 text-center">{{ $produk->nama_produk }}</td>
-                            <td class="px-4 py-3 text-center">{{ $produk->kategori->nama_kategori }}</td>
-                            <td class="px-4 py-3 text-center">
-                                Rp {{ number_format($produk->harga, 0, ',', '.') }}
-                            </td>
-                            <td class="text-center px-4 py-3">{{ $produk->stok }}</td>
-                            <td class="px-4 py-3 text-center">
-                                <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700">
-                                    Aktif
-                                </span>
-                            </td>
+                            <td class="px-4 py-3">{{ $kategori->id }}</td>
+                            <td class="px-4 py-3 text-center">{{ $kategori->nama_kategori }}</td>
                             <td class="px-4 py-3 text-center space-x-2">
-                                <a href="{{ route('produk.edit', $produk->id) }}"
+                                <a href="{{ route('kategori.edit', $kategori->id) }}"
                                     class="px-3 py-1 bg-yellow-400 rounded text-xs">Edit</a>
-                                <form action="{{ route('produk.destroy', $produk->id) }}" method="POST" class="inline"
-                                    onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+                                <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST" class="inline"
+                                    onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
                                     @csrf
                                     @method('DELETE')
 
@@ -83,11 +69,11 @@
                                     </button>
                                 </form>
                             </td>
+
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
     </div>
 </x-app-layout>

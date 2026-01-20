@@ -25,11 +25,29 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        // Redirect berdasarkan role
+        if ($user->level === 'admin') {
+            return redirect()->route('dashboard');
+        }
+        if ($user->level === 'kasir') {
+            return redirect()->route('transaksi.index');
+        }
+
+        // Fallback WAJIB (jika role tidak dikenal)
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')
+            ->withErrors([
+                'email' => 'Role akun tidak dikenali'
+            ]);
     }
+
 
     /**
      * Destroy an authenticated session.
@@ -42,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('login');
     }
 }
